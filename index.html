@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamil Abusive Comment Classifier | AI-Powered Content Moderation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Noto+Sans+Tamil:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="gradient-bg">
+        <div class="gradient-1"></div>
+        <div class="gradient-2"></div>
+        <div class="gradient-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="badge">
+                <span class="badge-icon">🔬</span>
+                <span>AI-Powered Content Moderation</span>
+            </div>
+            <h1 class="title">
+                <span class="title-tamil">தமிழ்</span>
+                Abusive Comment Detection
+            </h1>
+            <p class="subtitle">
+                Advanced transformer-based model for detecting abusive content in Tamil and Romanized Tamil text
+            </p>
+        </div>
+
+        <!-- Main Input Card -->
+        <div class="card input-card">
+            <div class="card-header">
+                <div class="card-icon">📝</div>
+                <h2>Analyze Comment</h2>
+            </div>
+            <textarea 
+                id="commentInput" 
+                placeholder="Enter Tamil or Romanized Tamil comment here...&#10;Example: 'nee romba nalla irukka' or 'உனக்கு வேலை இல்லையா?'"
+                rows="4"
+            ></textarea>
+            <div class="input-actions">
+                <div class="char-counter">
+                    <span id="charCount">0</span> characters
+                </div>
+                <button type="button" id="analyzeBtn" class="btn-primary">
+                    <span class="btn-text">Analyze Comment</span>
+                    <span class="btn-icon">→</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="results-section">
+            <div class="card result-card">
+                <div class="result-header">
+                    <div class="result-badge" id="resultBadge">Ready for Analysis</div>
+                    <div class="confidence-badge" id="confidenceBadge">Confidence: --%</div>
+                </div>
+                <!-- Animated Score Bars -->
+                <div class="score-container">
+                    <div class="score-item abusive">
+                        <div class="score-label">
+                            <span>⚠️ Abusive Content</span>
+                            <span id="abusiveScore">0%</span>
+                        </div>
+                        <div class="score-bar-bg">
+                            <div class="score-bar-fill abusive-fill" id="abusiveBar"></div>
+                        </div>
+                    </div>
+                    <div class="score-item non-abusive">
+                        <div class="score-label">
+                            <span>✅ Non-Abusive Content</span>
+                            <span id="nonAbusiveScore">0%</span>
+                        </div>
+                        <div class="score-bar-bg">
+                            <div class="score-bar-fill non-abusive-fill" id="nonAbusiveBar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-message" id="resultMessage"></div>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div class="dashboard-section">
+            <div class="card dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <h2>Real-Time Analytics</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalCount">0</div>
+                        <div class="stat-label">Total Analyzed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value abusive-stat" id="abusiveCount">0</div>
+                        <div class="stat-label">Abusive Detected</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value non-abusive-stat" id="nonAbusiveCount">0</div>
+                        <div class="stat-label">Safe Content</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="avgConfidence">0%</div>
+                        <div class="stat-label">Avg Confidence</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="distributionChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent History -->
+        <div class="history-section">
+            <div class="card history-card">
+                <div class="card-header">
+                    <div class="card-icon">🕒</div>
+                    <h2>Recent Analysis</h2>
+                </div>
+                <div id="historyList" class="history-list">
+                    <div class="empty-state">
+                        <div class="empty-icon">🔍</div>
+                        <p>No comments analyzed yet. Start by entering a comment above!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
